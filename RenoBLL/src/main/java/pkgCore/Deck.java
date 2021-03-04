@@ -44,7 +44,15 @@ public class Deck {
 	 *                    is shuffled.
 	 */
 	public Deck(int iNbrOfDecks) {
-		//TODO - Implement the constructor
+		
+		for (int a = 0; a < iNbrOfDecks; a++) {
+			for (eSuit eSuit : EnumSet.range(eSuit.HEARTS, eSuit.SPADES)) {
+				for (eRank eRank : EnumSet.range(eRank.TWO,  eRank.ACE)) {
+					cardsInDeck.add(new Card(eSuit, eRank));
+				}
+			}
+		}
+		Collections.shuffle(cardsInDeck);
 	}
 
 	/**
@@ -55,8 +63,11 @@ public class Deck {
 	 * @throws DeckException
 	 */
 	public Card Draw() throws DeckException {
-		//FIXME - Implement this method.  Shouldn't return null, return the right value
-		return null;
+		
+		if (cardsInDeck.size() == 0) {
+			throw new DeckException(this);
+		}
+		return cardsInDeck.remove(0);
 
 	}
 
@@ -69,8 +80,7 @@ public class Deck {
 	 * getiDeckCount - Return the number of cards remaining in the deck.
 	 */
 	public int getiDeckCount() {
-		//FIXME - Implement this method.  Shouldn't return 0, return the right value
-		return 0;
+		return cardsInDeck.size();
 	}
 
  
@@ -84,10 +94,7 @@ public class Deck {
 	 * @return - the cards in the deck.
 	 */
 	private ArrayList<Card> getCardsInDeck() {
-		//FIXME - Implement this method.  Shouldn't return 0, return the right value
-		return null;
+		return cardsInDeck;
 	}
  
-	
-	
 }
